@@ -41,7 +41,7 @@ var Jamira;
             var n, t = this,
                 o = u("#wrapper"),
                 i = u.browser.mobile ? "touchstart" : "click";
-            null !== e && (e = u(window).innerWidth()), e <= 975 && !t.mobMenuFlag && (u("body").prepend('<nav class="nav-mobile"><i class="fa fa-times"></i><h2> Jamira & Jeff </h2><ul></ul></nav>'), u(".nav-mobile > ul").html(u(".nav").html()), u(".nav-mobile b, .nav-mobile .nav-logo").remove(), u(".nav-mobile ul.dropdown-menu").removeClass().addClass("dropdown-mobile"), u(".navbar > a.btn").length && (u(".navbar > a.btn").each(function() {
+            null !== e && (e = u(window).innerWidth()), e <= 975 && !t.mobMenuFlag && (u("body").prepend('<nav class="nav-mobile"><i class="fa fa-times"></i><h2> Jeff & Jam </h2><ul></ul></nav>'), u(".nav-mobile > ul").html(u(".nav").html()), u(".nav-mobile b, .nav-mobile .nav-logo").remove(), u(".nav-mobile ul.dropdown-menu").removeClass().addClass("dropdown-mobile"), u(".navbar > a.btn").length && (u(".navbar > a.btn").each(function() {
                 u(".nav-mobile").append(u(this).clone())
             }), u(".nav-mobile > a.btn").removeClass("btn-light").addClass("btn-primary btn-sm")), n = u(".nav-mobile"), u("#nav-mobile-btn").on(i, function(e) {
                 e.stopPropagation(), e.preventDefault(), setTimeout(function() {
