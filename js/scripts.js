@@ -5,15 +5,14 @@ var Jamira;
     (Jamira = {
         initialized: !1,
         slideshowImages: slideshow_images,
-        mapMarkers: map_markers,
 
         init: function() {
             var e = this;
-            e.initialized || (e.initialized = !0, e.build(), e.events())
+            e.initialized || (e.initialized = !0, e.build(), e.events());
         },
         build: function() {
             var e = this;
-            e.jamiraStyle(), e.preloader(), e.navigation(), e.createMobileMenu(), e.heroHeight(), e.googleMap(), e.createLightboxGallery(), e.createBackgroundSlideshow(), e.createOwlSliders()
+            e.jamiraStyle(), e.preloader(), e.navigation(), e.createMobileMenu(), e.heroHeight(), e.createLightboxGallery(), e.createBackgroundSlideshow(), e.createOwlSliders(), e.appendNumOfSeats()
         },
         events: function() {
             var e, t, a = this;
@@ -239,123 +238,7 @@ var Jamira;
                 },
                 rtl: this.rtlFlag
             })
-        },
-        googleMap: function() {
-            var e, t, a, s, n, o, i, r, l = this,
-                c = [],
-                d = 0;
-            if (0 === u(".gmap").length || "undefined" === l.mapMarkers || 0 === l.mapMarkers.length || void 0 === window.google) return !1;
-            /^\d|\.|-$/.test(l.mapInitialLatitude) && /^\d|\.|-$/.test(l.mapInitialLongitude) || (l.mapInitialLatitude = l.mapMarkers[0].latitude, l.mapInitialLongitude = l.mapMarkers[0].longitude), t = new google.maps.LatLng(l.mapInitialLatitude, l.mapInitialLongitude), l.useDefaultMapStyle || (c = [{
-                stylers: [{
-                    hue: l.mapColor
-                }, {
-                    saturation: -75
-                }, {
-                    lightness: 5
-                }]
-            }, {
-                featureType: "administrative",
-                elementType: "labels.text.fill",
-                stylers: [{
-                    saturation: 20
-                }, {
-                    lightness: -70
-                }]
-            }, {
-                featureType: "water",
-                elementType: "geometry",
-                stylers: [{
-                    saturation: -50
-                }, {
-                    lightness: 40
-                }]
-            }, {
-                featureType: "road",
-                elementType: "geometry",
-                stylers: [{
-                    hue: l.mapColor
-                }, {
-                    saturation: -100
-                }, {
-                    lightness: 0
-                }]
-            }, {
-                featureType: "road.highway",
-                elementType: "geometry",
-                stylers: [{
-                    hue: l.mapColor
-                }, {
-                    saturation: 5
-                }, {
-                    lightness: 5
-                }]
-            }, {
-                featureType: "road",
-                elementType: "geometry.stroke",
-                stylers: [{
-                    saturation: 10
-                }, {
-                    lightness: 0
-                }]
-            }, {
-                featureType: "road.highway",
-                elementType: "geometry.stroke",
-                stylers: [{
-                    saturation: 0
-                }, {
-                    lightness: 20
-                }]
-            }, {
-                featureType: "transit",
-                elementType: "geometry",
-                stylers: [{
-                    hue: l.mapColor
-                }, {
-                    saturation: 30
-                }, {
-                    lightness: -30
-                }]
-            }]), e = new google.maps.StyledMapType(c, {
-                name: "Neela"
-            }), i = google.maps.ControlPosition.RIGHT_CENTER, r = google.maps.ControlPosition.RIGHT_BOTTOM, c = google.maps.ControlPosition.RIGHT_TOP, l.rtlFlag && (i = google.maps.ControlPosition.LEFT_CENTER, r = google.maps.ControlPosition.LEFT_BOTTOM, c = google.maps.ControlPosition.LEFT_TOP), a = {
-                center: t,
-                zoom: l.mapInitialZoom,
-                scrollwheel: !1,
-                panControl: !1,
-                mapTypeControl: !1,
-                zoomControl: !0,
-                zoomControlOptions: {
-                    position: i
-                },
-                streetViewControlOptions: {
-                    position: r
-                },
-                fullscreenControlOptions: {
-                    position: c
-                }
-            }, u(".gmap").each(function() {
-                for (n = u(this).attr("id"), (s = new google.maps.Map(document.getElementById(n), a)).mapTypes.set("map_style", e), s.setMapTypeId("map_style"), o = function(e) {
-                        var t = e.latitude,
-                            a = e.longitude,
-                            n = e.icon,
-                            e = e.infoWindow,
-                            o = new google.maps.InfoWindow({
-                                content: '<div class="infoWindow">' + e + "</div>"
-                            }),
-                            i = new RichMarker({
-                                position: new google.maps.LatLng(t, a),
-                                map: s,
-                                anchor: 8,
-                                anchorPoint: new google.maps.Point(0, -50),
-                                shadow: "none",
-                                content: '<div class="marker"><i class="fa ' + n + '"></i></div>'
-                            });
-                        google.maps.event.addListener(i, "click", function() {
-                            o.open(s, i)
-                        })
-                    }; d < l.mapMarkers.length;) o(l.mapMarkers[d]), d += 1
-            })
-        },   
+        },  
         heroHeight: function() {
             this.heroFullScreen && (u("#hero").css({
                 minHeight: u(window).innerHeight() + "px"
@@ -392,6 +275,18 @@ var Jamira;
                     }
                 }), e.fitWidth()
             }))
+        },
+        appendNumOfSeats: function() {
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+              get: (searchParams, prop) => searchParams.get(prop),
+            });
+            let seats = params.seats;
+            var a = document.getElementById('rsvp-container').getElementsByTagName('a'),
+            length = a.length;
+
+            for(var i=0; i< length; i++){
+                a[i].href += seats;
+            }
         },
     }).init()
 }(jQuery);
