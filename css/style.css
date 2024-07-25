@@ -5878,8 +5878,8 @@ textarea.form-control{
 }
 
 .swatch {
-    width: 30px; /* Adjusted width */
-    height: 30px; /* Adjusted height */
+    width: 50px; /* Adjusted width */
+    height: 50px; /* Adjusted height */
     border-radius: 50%;
     display: flex;
     color: white;
