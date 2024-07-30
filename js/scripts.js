@@ -12,7 +12,7 @@ var Jamira;
         },
         build: function() {
             var e = this;
-            e.jamiraStyle(), e.preloader(), e.navigation(), e.createMobileMenu(), e.heroHeight(), e.createLightboxGallery(), e.createBackgroundSlideshow(), e.createOwlSliders(), e.appendNumOfSeats()
+            e.jamiraStyle(), e.preloader(), e.navigation(), e.createMobileMenu(), e.heroHeight(), e.createLightboxGallery(), e.createBackgroundSlideshow(), e.createOwlSliders(), e.appendNumOfSeats(), e.createGallery()
         },
         events: function() {
             var e, t, a = this;
@@ -287,6 +287,34 @@ var Jamira;
             for(var i=0; i< length; i++){
                 a[i].href += seats;
             }
+        },
+        createGallery: function() {
+            var e = u(".gallery-scroller"),
+                t = !1;
+            u(".gallery-scroller").length && (u(".gallery-right").on("click", function() {
+                return !t && (t = !0, void e.animate({
+                    scrollLeft: e.scrollLeft() + 380
+                }, function() {
+                    t = !1
+                }))
+            }), u(".gallery-left").on("click", function() {
+                return !t && (t = !0, void e.animate({
+                    scrollLeft: e.scrollLeft() - 380
+                }, function() {
+                    t = !1
+                }))
+            }), u(document).ready(function() {
+                u(".gallery-scroller").niceScroll({
+                    cursorcolor: "#fff",
+                    cursorwidth: "0px",
+                    background: "#fff",
+                    cursorborder: "0px solid #1F2326",
+                    zindex: "999",
+                    autohidemode: !1,
+                    enablemousewheel: !1,
+                    touchbehavior: !0
+                })
+            }))
         },
     }).init()
 }(jQuery);
